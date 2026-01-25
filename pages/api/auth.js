@@ -1,0 +1,1 @@
+Implementing authentication endpoints for login, logout, and TikTok callback in Next.js API routes.
