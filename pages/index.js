@@ -1,5 +1,5 @@
-export default () => (
-	<main>
-		<h1>Welcome to Next.js</h1>
-	</main>
-)
+import Dashboard from './dashboard';
+
+export default function Home() {
+  return <Dashboard />;
+}
