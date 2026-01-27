@@ -7,6 +7,10 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState(null);
   const [profileData, setProfileData] = useState(null);
+  const [showProfile, setShowProfile] = useState(false);
+  const [campaigns, setCampaigns] = useState([]);
+  const [campaignsLoading, setCampaignsLoading] = useState(true);
+  const [campaignsError, setCampaignsError] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,9 +33,9 @@ export default function Dashboard() {
     }
     setAccessToken(token);
 
-    async function checkAuth(accessToken) {
+    async function fetchVideos(accessToken) {
       try {
-        const response = await fetch(`${API_BASE}/api/v1/profile`, {
+        const response = await fetch(`${API_BASE}/api/v1/videos`, {
           method: 'GET',
           headers: accessToken ? { 'Authorization': `Bearer ${accessToken}` } : {},
           credentials: 'include',
@@ -47,7 +51,7 @@ export default function Dashboard() {
           console.error('Failed to fetch videos');
         }
       } catch (error) {
-        console.error('Error checking authentication:', error);
+        console.error('Error fetching videos:', error);
         router.push('/login');
       } finally {
         setLoading(false);
@@ -55,7 +59,34 @@ export default function Dashboard() {
     }
 
     if (token) {
-      checkAuth(token);
+      fetchVideos(token);
+      // Fetch campaigns
+      fetch(`${API_BASE}/api/v1/campaigns`, {
+        method: 'GET',
+        headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+        credentials: 'include',
+      })
+        .then(res => {
+          if (res.status === 401) {
+            router.push('/login');
+            return;
+          }
+          return res.json();
+        })
+        .then(data => {
+          if (data && Array.isArray(data.campaigns)) {
+            setCampaigns(data.campaigns);
+          } else if (data && data.campaigns) {
+            setCampaigns([data.campaigns]);
+          } else {
+            setCampaigns([]);
+          }
+          setCampaignsLoading(false);
+        })
+        .catch(err => {
+          setCampaignsError('Failed to fetch campaigns');
+          setCampaignsLoading(false);
+        });
     } else {
       setLoading(false);
       router.push('/login');
@@ -90,21 +121,63 @@ export default function Dashboard() {
         <button onClick={handleLogout}>Logout</button>
       </div>
       <div style={{ margin: '1em 0', padding: '1em', background: '#f5f5f5', borderRadius: '6px' }}>
-        <strong>Profile API Response:</strong>
-        <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>{profileData ? JSON.stringify(profileData, null, 2) : 'Loading...'}</pre>
+        <button
+          style={{ marginBottom: '0.5em', cursor: 'pointer', background: '#eee', border: '1px solid #ccc', borderRadius: '4px', padding: '0.3em 0.7em' }}
+          onClick={() => setShowProfile((prev) => !prev)}
+        >
+          {showProfile ? 'Hide' : 'Show'} Profile API Response
+        </button>
+        {showProfile && (
+          <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all', marginTop: 0 }}>
+            {profileData ? JSON.stringify(profileData, null, 2) : 'Loading...'}
+          </pre>
+        )}
       </div>
-      {videos.length === 0 ? (
+      {Array.isArray(videos) && videos.length === 0 ? (
         <p>No videos found.</p>
       ) : (
-        <ul>
-          {videos.map((video, index) => (
-            <li key={index}>
-              <p>Video ID: {video.id}</p>
-              <p>Progress: {video.progress}%</p>
-            </li>
-          ))}
-        </ul>
+        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1em' }}>
+          <thead>
+            <tr>
+              <th style={{ border: '1px solid #ccc', padding: '0.5em' }}>Video ID</th>
+              <th style={{ border: '1px solid #ccc', padding: '0.5em' }}>Analyzed</th>
+              <th style={{ border: '1px solid #ccc', padding: '0.5em' }}>Transcribed</th>
+              <th style={{ border: '1px solid #ccc', padding: '0.5em' }}>Embedded</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.isArray(videos) && videos.map((video, index) => (
+              <tr key={index}>
+                <td style={{ border: '1px solid #ccc', padding: '0.5em' }}>{video.tiktokId}</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5em' }}>{video.analyzedAt ? 'Yes' : 'No'}</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5em' }}>{video.transcribedAt ? 'Yes' : 'No'}</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5em' }}>{video.embeddedAt ? 'Yes' : 'No'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
+
+      {/* Campaigns Section */}
+      <div style={{ marginTop: '2em', padding: '1em', background: '#e8f4ff', borderRadius: '6px' }}>
+        <h2>Campaigns</h2>
+        {campaignsLoading ? (
+          <p>Loading campaigns...</p>
+        ) : campaignsError ? (
+          <p style={{ color: 'red' }}>{campaignsError}</p>
+        ) : campaigns.length === 0 ? (
+          <p>No campaigns found.</p>
+        ) : (
+          <ul>
+            {campaigns.map((campaign, idx) => (
+              <li key={campaign.id || idx}>
+                <strong>{campaign.name || campaign.id || 'Unnamed Campaign'}</strong>
+                {campaign.description && <div>{campaign.description}</div>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
