@@ -12,6 +12,8 @@ export default function Callback() {
     const redirectUri = url.searchParams.get('redirect_uri') || '/dashboard';
 
     if (accessToken) {
+      // Store access token in sessionStorage for dashboard
+      sessionStorage.setItem('access_token', accessToken);
       // Call backend to create session using access_token
       fetch(`${API_BASE}/api/v1/login-with-token`, {
         method: 'POST',
