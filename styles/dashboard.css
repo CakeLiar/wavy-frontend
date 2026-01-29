@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Reset and base styles */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #__next { height: 100%; margin: 0; padding: 0; border: 0; outline: 0; background: #000; color: #fff; }
+body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+
+/* Page wrapper */
+.page { min-height: 100vh; background: #000; color: #fff; font-family: Inter, Arial, sans-serif; padding: 0; }
+
+/* Header */
+.header-row { display: flex; justify-content: space-between; align-items: center; padding: 2em 3em 0 3em; }
+.title { font-weight: 600; font-size: 2em; letter-spacing: 0.02em; margin: 0; }
+
+/* Container */
+.container { margin: 2em 0; padding: 1em 3em; background: rgba(20,20,20,0.7); border-radius: 12px; }
+.profile-toggle { margin-bottom: 0.5em; }
+.profile-pre { white-space: pre-wrap; word-break: break-all; margin-top: 0; color: #fff; background: rgba(0,0,0,0.6); border-radius: 8px; padding: 1em; }
+
+.section-title { font-weight: 600; font-size: 1.5em; margin: 2em 0 0.5em 0; text-align: center; letter-spacing: 0.02em; }
+.center-muted { text-align: center; color: #888; font-size: 1.2em; }
+
+/* Pill toggle */
+.toggle-pill { background: rgba(255,255,255,0.06); border-radius: 999px; padding: 4px; display: inline-flex; gap: 4px; border: 1px solid rgba(255,255,255,0.03); }
+.pill-option { background: transparent; border: none; color: #e6e6e6; padding: 0.6em 1.6em; border-radius: 999px; font-weight: 600; cursor: pointer; transition: background 0.12s, color 0.12s, transform 0.12s; }
+.pill-option.active { background: #0b6cff; color: #fff; box-shadow: 0 8px 24px rgba(11,108,255,0.16); transform: translateY(-1px); }
+.pill-option:hover { background: rgba(255,255,255,0.03); }
+.pill-option.active:hover { background: #0047b3; }
+
+/* Campaign title */
+.campaign-title { font-weight: 600; font-size: 1em; color: #fff; }
+
+/* Buttons */
+.minimal-btn { background: #111; color: #fff; border: 1px solid #222; border-radius: 6px; padding: 0.6em 1.4em; font-size: 1em; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+.minimal-btn:hover { background: #222; }
+
+/* Video cards layout */
+.video-cards { display: flex; flex-wrap: wrap; gap: 2em; justify-content: center; margin-top: 2em; }
+.video-card { width: 220px; height: 400px; background: #111; border: 2px solid #000; border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: none; transition: transform 0.2s; }
+.video-card-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center; opacity: 0.25; z-index: 0; }
+.video-card-content { position: relative; z-index: 1; padding: 1em; background: rgba(0,0,0,0.7); border-radius: 0 0 18px 18px; }
+
+.status-pill { background: #222; color: #fff; border-radius: 12px; padding: 0.3em 1em; font-size: 0.95em; font-weight: 600; }
+
+/* Campaigns */
+.campaigns-list { display: flex; flex-wrap: wrap; gap: 1.5em; margin-top: 2em; justify-content: center; }
+.campaign-card { background: #111; border: 2px solid #000; border-radius: 18px; color: #fff; width: 320px; padding: 1em; cursor: pointer; transition: background 0.2s; }
+.campaign-card.expanded { background: #222; }
+.campaign-details { margin-top: 1em; font-size: 1em; color: #fff; }
+
+/* Layout helpers */
+.header-row { display: flex; justify-content: space-between; align-items: center; padding: 2em 3em 0 3em; }
+.container { margin: 2em 0; padding: 1em 3em; background: rgba(20,20,20,0.7); border-radius: 12px; }
+.title { font-weight: 600; font-size: 2em; letter-spacing: 0.02em; margin: 0; }
+.section-title { font-weight: 600; font-size: 1.5em; margin: 2em 0 0.5em 0; text-align: center; letter-spacing: 0.02em; }
+.center-muted { text-align: center; color: #888; font-size: 1.2em; }

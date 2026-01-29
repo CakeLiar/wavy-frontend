@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { API_BASE } from '../apiBase';
 import { useRouter } from 'next/router';
+import VideoCards from '../components/VideoCards';
+import Campaigns from '../components/Campaigns';
 
 export default function Dashboard() {
+  const [selectedView, setSelectedView] = useState('videos');
+  const [expandedCampaign, setExpandedCampaign] = useState(null);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState(null);
@@ -115,69 +119,56 @@ export default function Dashboard() {
   };
 
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h1>Videos Dashboard</h1>
-        <button onClick={handleLogout}>Logout</button>
+    <div className="page">
+      <div className="header-row">
+        <h1 className="title">Wavy Creator Dashboard</h1>
+        <button className="minimal-btn" onClick={handleLogout}>Logout</button>
       </div>
-      <div style={{ margin: '1em 0', padding: '1em', background: '#f5f5f5', borderRadius: '6px' }}>
+      <div className="container">
         <button
-          style={{ marginBottom: '0.5em', cursor: 'pointer', background: '#eee', border: '1px solid #ccc', borderRadius: '4px', padding: '0.3em 0.7em' }}
+          className="minimal-btn profile-toggle"
           onClick={() => setShowProfile((prev) => !prev)}
         >
           {showProfile ? 'Hide' : 'Show'} Profile API Response
         </button>
         {showProfile && (
-          <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all', marginTop: 0 }}>
+          <pre className="profile-pre">
             {profileData ? JSON.stringify(profileData, null, 2) : 'Loading...'}
           </pre>
         )}
       </div>
-      {Array.isArray(videos) && videos.length === 0 ? (
-        <p>No videos found.</p>
-      ) : (
-        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1em' }}>
-          <thead>
-            <tr>
-              <th style={{ border: '1px solid #ccc', padding: '0.5em' }}>Video ID</th>
-              <th style={{ border: '1px solid #ccc', padding: '0.5em' }}>Analyzed</th>
-              <th style={{ border: '1px solid #ccc', padding: '0.5em' }}>Transcribed</th>
-              <th style={{ border: '1px solid #ccc', padding: '0.5em' }}>Embedded</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.isArray(videos) && videos.map((video, index) => (
-              <tr key={index}>
-                <td style={{ border: '1px solid #ccc', padding: '0.5em' }}>{video.tiktokId}</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5em' }}>{video.analyzedAt ? 'Yes' : 'No'}</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5em' }}>{video.transcribedAt ? 'Yes' : 'No'}</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5em' }}>{video.embeddedAt ? 'Yes' : 'No'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-
-      {/* Campaigns Section */}
-      <div style={{ marginTop: '2em', padding: '1em', background: '#e8f4ff', borderRadius: '6px' }}>
-        <h2>Campaigns</h2>
-        {campaignsLoading ? (
-          <p>Loading campaigns...</p>
-        ) : campaignsError ? (
-          <p style={{ color: 'red' }}>{campaignsError}</p>
-        ) : campaigns.length === 0 ? (
-          <p>No campaigns found.</p>
-        ) : (
-          <ul>
-            {campaigns.map((campaign, idx) => (
-              <li key={campaign.id || idx}>
-                <strong>{campaign.name || campaign.id || 'Unnamed Campaign'}</strong>
-                {campaign.description && <div>{campaign.description}</div>}
-              </li>
-            ))}
-          </ul>
-        )}
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.2em' }}>
+        <div className="toggle-pill">
+          <button
+            className={`pill-option ${selectedView === 'videos' ? 'active' : ''}`}
+            onClick={() => setSelectedView('videos')}
+          >
+            My Videos
+          </button>
+          <button
+            className={`pill-option ${selectedView === 'campaigns' ? 'active' : ''}`}
+            onClick={() => setSelectedView('campaigns')}
+          >
+            Campaigns
+          </button>
+        </div>
       </div>
+
+      {selectedView === 'videos' ? (
+        Array.isArray(videos) && videos.length === 0 ? (
+          <p style={{ textAlign: 'center', color: '#888', fontSize: '1.2em' }}>No videos found.</p>
+        ) : (
+          <VideoCards videos={videos} />
+        )
+      ) : (
+        <Campaigns
+          campaigns={campaigns}
+          loading={campaignsLoading}
+          error={campaignsError}
+          expandedCampaign={expandedCampaign}
+          setExpandedCampaign={setExpandedCampaign}
+        />
+      )}
     </div>
   );
 }

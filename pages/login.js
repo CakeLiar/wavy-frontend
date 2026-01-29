@@ -35,13 +35,35 @@ export default function Login() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ minHeight: '100vh', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter, Arial, sans-serif', fontWeight: 400 }}>
+        <span style={{ fontSize: '1.2em', letterSpacing: '0.02em' }}>Loading...</span>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <button onClick={handleTikTokLogin}>Sign in with TikTok</button>
+    <div style={{ minHeight: '100vh', background: '#000', color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter, Arial, sans-serif', fontWeight: 400 }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+        .minimal-btn {
+          background: #111;
+          color: #fff;
+          border: 1px solid #222;
+          border-radius: 6px;
+          padding: 0.6em 1.4em;
+          font-family: Inter, Arial, sans-serif;
+          font-size: 1em;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .minimal-btn:hover {
+          background: #222;
+        }
+      `}</style>
+      <h1 style={{ fontWeight: 600, fontSize: '2em', marginBottom: '1.5em', letterSpacing: '0.02em' }}>Login</h1>
+      <button className="minimal-btn" onClick={handleTikTokLogin}>Sign in with TikTok</button>
     </div>
   );
 }
