@@ -2,11 +2,11 @@ import React, { useMemo, useState } from 'react';
 
 function sampleCreators() {
   return [
-    { id: 'c1', name: 'Ava Stone', age: 24, behavioral: 0.82, emotional: 0.75, semantic: 0.68 },
-    { id: 'c2', name: 'Liam Reed', age: 31, behavioral: 0.62, emotional: 0.55, semantic: 0.72 },
-    { id: 'c3', name: 'Noah Kim', age: 28, behavioral: 0.45, emotional: 0.60, semantic: 0.40 },
-    { id: 'c4', name: 'Emma Lopez', age: 22, behavioral: 0.92, emotional: 0.88, semantic: 0.81 },
-    { id: 'c5', name: 'Olivia Park', age: 27, behavioral: 0.71, emotional: 0.69, semantic: 0.73 },
+    { id: 'c1', name: 'Ava Stone', age: 24, behavioral: 0.82, emotional: 0.75, semantic: 0.68, expected_views: 12500 },
+    { id: 'c2', name: 'Liam Reed', age: 31, behavioral: 0.62, emotional: 0.55, semantic: 0.72, expected_views: 8900 },
+    { id: 'c3', name: 'Noah Kim', age: 28, behavioral: 0.45, emotional: 0.60, semantic: 0.40, expected_views: 4300 },
+    { id: 'c4', name: 'Emma Lopez', age: 22, behavioral: 0.92, emotional: 0.88, semantic: 0.81, expected_views: 20400 },
+    { id: 'c5', name: 'Olivia Park', age: 27, behavioral: 0.71, emotional: 0.69, semantic: 0.73, expected_views: 9600 },
   ];
 }
 
@@ -47,7 +47,7 @@ export default function CampaignModal({ campaign, onClose }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal modal-wide" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h3 style={{ margin: 0 }}>Matched creators</h3>
+          <h3 style={{ margin: 0 }}>Applicants</h3>
           <div style={{ display: 'flex', gap: '0.6em' }}>
             <button className="minimal-btn" onClick={onClose}>Close</button>
           </div>
@@ -81,6 +81,7 @@ export default function CampaignModal({ campaign, onClose }) {
                       <th><div className="col-header">Emotional fit</div></th>
                       <th><div className="col-header">Semantic fit</div></th>
                       <th><div className="col-header">Overall fit</div></th>
+                      <th><div className="col-header">Expected views</div></th>
                       <th style={{ width: '100px' }}></th>
                     </tr>
                   </thead>
@@ -99,6 +100,7 @@ export default function CampaignModal({ campaign, onClose }) {
                           <td>{emotionalLabel} ({pct(c.emotional)}%)</td>
                           <td>{semanticLabel} ({pct(c.semantic)}%)</td>
                           <td>{overallLabel} ({pct(overallScore)}%)</td>
+                          <td>{c.expected_views?.toLocaleString?.() ?? c.expected_views ?? '-'}</td>
                           <td style={{ textAlign: 'right' }}>
                             <button className="invite-btn" disabled>Invite</button>
                           </td>
