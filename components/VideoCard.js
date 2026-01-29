@@ -8,8 +8,8 @@ export default function VideoCard({ video }) {
     let isMounted = true;
 
     async function fetchThumbnail() {
-      if (video && video.tiktokId && video.username) {
-        const videoUrl = `https://www.tiktok.com/@${video.username}/video/${video.tiktokId}`;
+      if (video && video.tiktokId && video.userId) {
+        const videoUrl = `https://www.tiktok.com/@${video.userId}/video/${video.tiktokId}`;
         const oembedEndpoint = `https://www.tiktok.com/oembed?url=${encodeURIComponent(videoUrl)}`;
         try {
           const res = await fetch(oembedEndpoint);
@@ -43,7 +43,9 @@ export default function VideoCard({ video }) {
         <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap', marginTop: '0.5em' }}>
           {video?.analyzedAt && <span className="status-pill">Analyzed</span>}
           {video?.transcribedAt && <span className="status-pill">Transcribed</span>}
-          {video?.embeddedAt && <span className="status-pill">Embedded</span>}
+          {Array.isArray(video?.embedding) && video.embedding.length > 0 && (
+            <span className="status-pill">Embedded</span>
+          )}
         </div>
       </div>
     </div>
