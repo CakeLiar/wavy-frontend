@@ -35,6 +35,7 @@ export default function VideoCard({ video }) {
         style={{ backgroundImage: thumbnail ? `url(${thumbnail})` : 'none' }}
       />
       <div className="video-card-content">
+        <h3 className="video-title">{video?.title || video?.name || 'Untitled video'}</h3>
         <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap', marginTop: '0.5em' }}>
           {video?.analyzedAt && <span className="status-pill">Analyzed</span>}
           {video?.transcribedAt && <span className="status-pill">Transcribed</span>}

@@ -40,7 +40,9 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .video-card-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center; opacity: 0.25; z-index: 0; }
 .video-card-content { position: relative; z-index: 1; padding: 1em; background: rgba(0,0,0,0.7); border-radius: 0 0 18px 18px; }
 
-.status-pill { background: #222; color: #fff; border-radius: 12px; padding: 0.3em 1em; font-size: 0.95em; font-weight: 600; }
+.video-title { font-size: 1.03em; font-weight: 600; margin: 0 0 0.6em 0; color: #fff; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.status-pill { background: #222; color: #fff; border-radius: 10px; padding: 0.18em 0.6em; font-size: 0.8em; font-weight: 600; line-height: 1; }
 
 /* Campaigns */
 .campaigns-list { display: flex; flex-wrap: wrap; gap: 1.5em; margin-top: 2em; justify-content: center; }
