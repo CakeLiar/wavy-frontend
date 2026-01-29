@@ -18,7 +18,7 @@ export default function Dashboard() {
   const router = useRouter();
   const [syncing, setSyncing] = useState(false);
   const [processing, setProcessing] = useState(false);
-  const [pollIntervalMs] = useState(4000);
+  const [pollIntervalMs] = useState(15000);
 
   useEffect(() => {
     // Print query parameters to the console
@@ -108,6 +108,12 @@ export default function Dashboard() {
             setProfileData(data);
             if (data.videos && Array.isArray(data.videos)) {
               setVideos(data.videos);
+            }
+            // stop polling when all videos are processed
+            const tv = Number(data.totalVideos || 0);
+            const vp = Number(data.videosProcessed || 0);
+            if (tv > 0 && vp >= tv) {
+              clearInterval(poll);
             }
           })
           .catch(() => {});
