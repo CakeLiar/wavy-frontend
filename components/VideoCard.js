@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function VideoCard({ video }) {
   const [thumbnail, setThumbnail] = useState(null);
+  const [title, setTitle] = useState(video?.title || video?.name || 'Untitled video');
 
   useEffect(() => {
     let isMounted = true;
@@ -14,10 +15,13 @@ export default function VideoCard({ video }) {
           const res = await fetch(oembedEndpoint);
           if (res.ok) {
             const data = await res.json();
-            if (isMounted) setThumbnail(data.thumbnail_url);
+            if (isMounted) {
+              if (data.thumbnail_url) setThumbnail(data.thumbnail_url);
+              if (data.title) setTitle(data.title);
+            }
           }
         } catch (e) {
-          // fail silently
+            
         }
       }
     }
@@ -35,7 +39,7 @@ export default function VideoCard({ video }) {
         style={{ backgroundImage: thumbnail ? `url(${thumbnail})` : 'none' }}
       />
       <div className="video-card-content">
-        <h3 className="video-title">{video?.title || video?.name || 'Untitled video'}</h3>
+      <h3 className="video-title">{title}</h3>
         <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap', marginTop: '0.5em' }}>
           {video?.analyzedAt && <span className="status-pill">Analyzed</span>}
           {video?.transcribedAt && <span className="status-pill">Transcribed</span>}

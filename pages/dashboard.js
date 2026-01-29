@@ -3,6 +3,7 @@ import { API_BASE } from '../apiBase';
 import { useRouter } from 'next/router';
 import VideoCards from '../components/VideoCards';
 import Campaigns from '../components/Campaigns';
+import { getTokenFromUrl, getStoredToken, saveToken, clearToken, authHeaders, logout } from '../utils/auth';
 
 export default function Dashboard() {
   const [selectedView, setSelectedView] = useState('videos');
@@ -23,17 +24,12 @@ export default function Dashboard() {
     const params = Object.fromEntries(url.searchParams.entries());
     console.log('Dashboard query parameters:', params);
 
-    // Check for access token in URL (after backend redirect)
-    let token = url.searchParams.get('access_token');
+    // Centralized token retrieval: try URL first, then sessionStorage
+    let token = getTokenFromUrl();
     if (!token) {
-      // Try to get from sessionStorage (if previously saved)
-      token = sessionStorage.getItem('access_token');
+      token = getStoredToken();
     } else {
-      // Save token for future requests
-      sessionStorage.setItem('access_token', token);
-      // Remove token from URL for cleanliness
-      url.searchParams.delete('access_token');
-      window.history.replaceState({}, document.title, url.pathname + url.search);
+      saveToken(token);
     }
     setAccessToken(token);
 
@@ -41,7 +37,7 @@ export default function Dashboard() {
       try {
         const response = await fetch(`${API_BASE}/api/v1/videos`, {
           method: 'GET',
-          headers: accessToken ? { 'Authorization': `Bearer ${accessToken}` } : {},
+          headers: authHeaders(accessToken),
           credentials: 'include',
         });
         if (response.status === 401) {
@@ -67,7 +63,7 @@ export default function Dashboard() {
       // Fetch campaigns
       fetch(`${API_BASE}/api/v1/campaigns`, {
         method: 'GET',
-        headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+        headers: authHeaders(token),
         credentials: 'include',
       })
         .then(res => {
@@ -102,19 +98,10 @@ export default function Dashboard() {
   }
 
   const handleLogout = async () => {
-    sessionStorage.removeItem('access_token');
     try {
-      const response = await fetch(`${API_BASE}/logout`, {
-        method: 'GET',
-        headers: accessToken ? { 'Authorization': `Bearer ${accessToken}` } : {},
-      });
-      if (response.ok) {
-        router.push('/login');
-      } else {
-        alert('Logout failed');
-      }
-    } catch (error) {
-      alert('Logout error');
+      await logout(accessToken);
+    } finally {
+      router.push('/login');
     }
   };
 
