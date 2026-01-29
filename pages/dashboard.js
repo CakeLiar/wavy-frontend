@@ -17,6 +17,9 @@ export default function Dashboard() {
   const [campaignsLoading, setCampaignsLoading] = useState(true);
   const [campaignsError, setCampaignsError] = useState(null);
   const router = useRouter();
+  const [syncing, setSyncing] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [pollIntervalMs] = useState(4000);
 
   useEffect(() => {
     // Print query parameters to the console
@@ -87,6 +90,31 @@ export default function Dashboard() {
           setCampaignsError('Failed to fetch campaigns');
           setCampaignsLoading(false);
         });
+      // start polling profile to keep progress live
+      const poll = setInterval(() => {
+        fetch(`${API_BASE}/api/v1/profile`, {
+          method: 'GET',
+          headers: authHeaders(token),
+          credentials: 'include',
+        })
+          .then(res => {
+            if (res.status === 401) {
+              router.push('/login');
+              return null;
+            }
+            return res.json();
+          })
+          .then(data => {
+            if (!data) return;
+            setProfileData(data);
+            if (data.videos && Array.isArray(data.videos)) {
+              setVideos(data.videos);
+            }
+          })
+          .catch(() => {});
+      }, pollIntervalMs);
+      // clear on cleanup
+      return () => clearInterval(poll);
     } else {
       setLoading(false);
       router.push('/login');
@@ -97,6 +125,11 @@ export default function Dashboard() {
     return <div>Loading...</div>;
   }
 
+  // derive progress from profileData
+  const videosProcessed = Number(profileData?.videosProcessed || 0);
+  const totalVideos = Number(profileData?.totalVideos || (Array.isArray(videos) ? videos.length : 0) || 0);
+  const percent = totalVideos > 0 ? Math.min(100, Math.ceil((100 * videosProcessed) / totalVideos)) : 0;
+
   const handleLogout = async () => {
     try {
       await logout(accessToken);
@@ -105,11 +138,77 @@ export default function Dashboard() {
     }
   };
 
+  const handleSync = async () => {
+    setSyncing(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/sync`, {
+        method: 'POST',
+        headers: authHeaders(accessToken),
+        credentials: 'include',
+      });
+      if (res.ok) {
+        // refresh data
+        router.replace(router.asPath);
+      } else {
+        const text = await res.text().catch(() => '');
+        alert('Sync failed: ' + res.status + ' ' + text);
+      }
+    } catch (e) {
+      alert('Sync error');
+    } finally {
+      setSyncing(false);
+    }
+  };
+
+  const handleProcess = async () => {
+    setProcessing(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/process_jobs`, {
+        method: 'POST',
+        headers: authHeaders(accessToken),
+        credentials: 'include',
+      });
+      if (res.ok) {
+        router.replace(router.asPath);
+      } else {
+        const text = await res.text().catch(() => '');
+        alert('Process failed: ' + res.status + ' ' + text);
+      }
+    } catch (e) {
+      alert('Process error');
+    } finally {
+      setProcessing(false);
+    }
+  };
+
   return (
     <div className="page">
       <div className="header-row">
         <h1 className="title">Wavy Creator Dashboard</h1>
-        <button className="minimal-btn" onClick={handleLogout}>Logout</button>
+        <div className="progress-wrap" title={`${percent}% videos processed`}>
+          <svg className="progress-svg" viewBox="0 0 36 36" aria-hidden>
+            <path className="progress-bg" d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831" />
+            <path
+              className="progress-bar"
+              strokeDasharray={`${percent}, 100`}
+              d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+          </svg>
+          <div className="progress-text">{percent}%</div>
+        </div>
+        <div style={{ display: 'flex', gap: '0.6em', alignItems: 'center' }}>
+          <button className="minimal-btn" onClick={handleProcess} disabled={processing}>
+            {processing ? 'Processing...' : 'Process Data'}
+          </button>
+          <button className="minimal-btn" onClick={handleSync} disabled={syncing}>
+            {syncing ? 'Syncing...' : 'Sync Videos'}
+          </button>
+          <button className="minimal-btn" onClick={handleLogout}>Logout</button>
+        </div>
       </div>
       <div className="container">
         <button
