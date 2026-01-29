@@ -20,6 +20,10 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .section-title { font-weight: 600; font-size: 1.5em; margin: 2em 0 0.5em 0; text-align: center; letter-spacing: 0.02em; }
 .center-muted { text-align: center; color: #888; font-size: 1.2em; }
 
+/* Subtitle under the toggle pill indicating current view */
+.view-subtitle-row { display: flex; justify-content: space-between; align-items: center; margin-top: 0.8em; margin-left: 3em; margin-right: 3em; }
+.view-subtitle { text-align: left; color: #ddd; font-size: 1.1em; font-weight: 600; }
+
 /* Pill toggle */
 .toggle-pill { background: rgba(255,255,255,0.06); border-radius: 999px; padding: 4px; display: inline-flex; gap: 4px; border: 1px solid rgba(255,255,255,0.03); }
 .pill-option { background: transparent; border: none; color: #e6e6e6; padding: 0.6em 1.6em; border-radius: 999px; font-weight: 600; cursor: pointer; transition: background 0.12s, color 0.12s, transform 0.12s; }
@@ -49,13 +53,59 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .progress-bar { fill: none; stroke: #0b6cff; stroke-width: 3.5; stroke-linecap: round; transition: stroke-dasharray 350ms ease; }
 .progress-text { font-weight: 700; font-size: 0.95em; color: #fff; }
 
+.progress-label { color: #ddd; font-size: 0.95em; font-weight: 600; }
+
+/* Modal (Create Campaign) */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 60; }
+.modal { background: #0b0b0b; border-radius: 12px; padding: 1.2em; width: 420px; box-shadow: 0 12px 40px rgba(0,0,0,0.7); color: #fff; }
+.modal.modal-wide { width: 90vw; max-width: 90vw; }
+
+/* Extra spacing for wide campaign modal: separate title and content */
+.modal.modal-wide .modal-header { padding-bottom: 0.8em; }
+.modal.modal-wide .modal-body { padding-top: 1.2em; }
+.modal-header h3 { margin: 0 0 0.6em 0; }
+.modal-body { display: flex; flex-direction: column; gap: 0.8em; }
+.modal-body label { display: flex; flex-direction: column; font-size: 0.95em; color: #ddd; }
+.row-inline { display: flex; flex-direction: row; align-items: center; gap: 0.6em; justify-content: flex-start; padding: 1em 0; }
+.modal-body label.row-inline { flex-direction: row; }
+.row-inline input[type="checkbox"] { margin: 0; width: 18px; height: 18px; }
+.row-inline .muted { margin-left: 0.2em; }
+.muted { color: #ddd; }
+
+/* Soft-specs inline rows: label on left, selector on right */
+.soft-specs { border: none; padding: 0; }
+.soft-specs-legend { color: #ddd; font-weight: 700; margin-bottom: 0.4em; }
+.soft-specs-list { display: flex; flex-direction: column; gap: 0.6em; }
+.row-field { display: flex; align-items: center; justify-content: space-between; gap: 0.8em; }
+.row-label { color: #ccc; font-size: 0.95em; margin: 0; min-width: 44%; }
+.select-inline { margin-top: 0; width: 56%; }
+.input { margin-top: 0.35em; padding: 0.55em 0.6em; border-radius: 8px; background: #0f0f0f; border: 1px solid rgba(255,255,255,0.04); color: #fff; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 0.6em; margin-top: 0.4em; }
+
+/* Creators table inside campaign modal */
+.creators-table-wrap { overflow: auto; max-height: 420px; margin-top: 0.6em; }
+.creators-table { width: 100%; border-collapse: collapse; color: #fff; }
+.creators-table thead th { text-align: left; padding: 0.45em 0.6em; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.creators-table tbody td { padding: 0.6em 0.6em; border-bottom: 1px solid rgba(255,255,255,0.03); color: #ddd; }
+.col-header { font-size: 0.95em; color: #fff; margin-bottom: 0.25em; }
+.col-filter { width: 100%; padding: 0.35em 0.5em; border-radius: 6px; background: #0f0f0f; border: 1px solid rgba(255,255,255,0.04); color: #fff; }
+.invite-btn { background: #0b6cff; color: #fff; border: none; padding: 0.45em 0.7em; border-radius: 8px; font-weight: 700; cursor: not-allowed; opacity: 0.9; }
+.invite-btn:disabled { opacity: 0.85; }
+
+.table-filter-bar { display: flex; align-items: center; gap: 0.6em; margin-bottom: 0.6em; }
+
+
 .status-pill { background: #222; color: #fff; border-radius: 10px; padding: 0.18em 0.6em; font-size: 0.8em; font-weight: 600; line-height: 1; }
 
 /* Campaigns */
-.campaigns-list { display: flex; flex-wrap: wrap; gap: 1.5em; margin-top: 2em; justify-content: center; }
-.campaign-card { background: #111; border: 2px solid #000; border-radius: 18px; color: #fff; width: 320px; padding: 1em; cursor: pointer; transition: background 0.2s; }
-.campaign-card.expanded { background: #222; }
-.campaign-details { margin-top: 1em; font-size: 1em; color: #fff; }
+.campaigns-list { display: flex; flex-wrap: wrap; gap: 1.2em; margin-top: 1.2em; justify-content: flex-start; align-items: flex-start; padding-left: 3em; }
+.campaign-card { background: transparent; border: none; color: #fff; width: 320px; border-radius: 12px; overflow: hidden; transition: background 0.16s ease; padding: 1.2em; }
+.campaign-card-img { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; box-shadow: none; display: block; }
+.campaign-card-title { margin-top: 0.7em; padding: 0.45em 0.6em 0.2em 0.6em; font-weight: 700; color: #fff; font-size: 1.05em; background: transparent; }
+
+/* Hover: only show background behind entire card (no lift) */
+.campaign-card:hover { background: rgba(255,255,255,0.08); cursor: pointer; }
+.campaign-details { display: none; }
 
 /* Layout helpers */
 .header-row { display: flex; justify-content: space-between; align-items: center; padding: 2em 3em 0 3em; }
