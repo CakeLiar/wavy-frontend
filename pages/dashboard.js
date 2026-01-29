@@ -12,7 +12,6 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState(null);
   const [profileData, setProfileData] = useState(null);
-  const [showProfile, setShowProfile] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
   const [campaignsLoading, setCampaignsLoading] = useState(true);
   const [campaignsError, setCampaignsError] = useState(null);
@@ -210,19 +209,7 @@ export default function Dashboard() {
           <button className="minimal-btn" onClick={handleLogout}>Logout</button>
         </div>
       </div>
-      <div className="container">
-        <button
-          className="minimal-btn profile-toggle"
-          onClick={() => setShowProfile((prev) => !prev)}
-        >
-          {showProfile ? 'Hide' : 'Show'} Profile API Response
-        </button>
-        {showProfile && (
-          <pre className="profile-pre">
-            {profileData ? JSON.stringify(profileData, null, 2) : 'Loading...'}
-          </pre>
-        )}
-      </div>
+      
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.2em' }}>
         <div className="toggle-pill">
           <button
