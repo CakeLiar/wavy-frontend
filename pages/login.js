@@ -31,7 +31,7 @@ export default function Login() {
 
   const handleTikTokLogin = () => {
     const redirectUri = encodeURIComponent(window.location.origin + '/callback');
-    window.location.href = `${API_BASE}/login/tiktok?redirect_uri=${redirectUri}`;
+    window.location.href = `${API_BASE}/api/v1/login/tiktok?redirect_uri=${redirectUri}`;
   };
 
   if (loading) {

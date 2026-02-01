@@ -46,7 +46,7 @@ export function authHeaders(token) {
 export async function logout(accessToken) {
   clearToken();
   try {
-    await fetch(`${API_BASE}/logout`, {
+    await fetch(`${API_BASE}/api/v1/logout`, {
       method: 'GET',
       headers: authHeaders(accessToken),
     });
