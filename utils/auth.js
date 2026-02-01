@@ -49,6 +49,7 @@ export async function logout(accessToken) {
     await fetch(`${API_BASE}/api/v1/logout`, {
       method: 'GET',
       headers: authHeaders(accessToken),
+      credentials: 'include'
     });
   } catch (e) {
     // ignore network errors during logout
