@@ -257,16 +257,7 @@ export default function Dashboard() {
       <div className="header-row">
         <h1 className="title">Wavy Dashboard</h1>
         <div style={{ display: 'flex', gap: '0.6em', alignItems: 'center' }}>
-          {selectedView === 'videos' ? (
-            <>
-              <button className="minimal-btn" onClick={handleProcess} disabled={processing}>
-                {processing ? 'Processing...' : 'Process Data'}
-              </button>
-              <button className="minimal-btn" onClick={handleSync} disabled={syncing}>
-                {syncing ? 'Syncing...' : 'Sync Videos'}
-              </button>
-            </>
-          ) : (
+          {selectedView === 'campaigns' && (
             <button className="minimal-btn" onClick={() => setShowCreateModal(true)}>
               Create Campaign
             </button>
