@@ -1,36 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export default function VideoCard({ video }) {
-  const [thumbnail, setThumbnail] = useState(null);
-  const [title, setTitle] = useState(video?.title || video?.name || 'Untitled video');
-
-  useEffect(() => {
-    let isMounted = true;
-
-    async function fetchThumbnail() {
-      if (video && video.tiktokId && video.userId) {
-        const videoUrl = `https://www.tiktok.com/@${video.userId}/video/${video.tiktokId}`;
-        const oembedEndpoint = `https://www.tiktok.com/oembed?url=${encodeURIComponent(videoUrl)}`;
-        try {
-          const res = await fetch(oembedEndpoint);
-          if (res.ok) {
-            const data = await res.json();
-            if (isMounted) {
-              if (data.thumbnail_url) setThumbnail(data.thumbnail_url);
-              if (data.title) setTitle(data.title);
-            }
-          }
-        } catch (e) {
-            
-        }
-      }
-    }
-
-    fetchThumbnail();
-    return () => {
-      isMounted = false;
-    };
-  }, [video?.tiktokId, video?.username]);
+  const thumbnail = video?.thumbnailUrl || video?.thumbnail;
+  const title = video?.title || video?.name || 'Untitled video';
 
   return (
     <div className="video-card">
