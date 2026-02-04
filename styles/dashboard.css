@@ -17,7 +17,7 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .profile-toggle { margin-bottom: 0.5em; }
 .profile-pre { white-space: pre-wrap; word-break: break-all; margin-top: 0; color: #fff; background: rgba(0,0,0,0.6); border-radius: 8px; padding: 1em; }
 
-.section-title { font-weight: 600; font-size: 1.5em; margin: 2em 0 0.5em 0; text-align: center; letter-spacing: 0.02em; }
+.section-title { font-weight: 600; font-size: 1.2em; margin: 2em 0 0.5em 0; text-align: center; letter-spacing: 0.02em; }
 .center-muted { text-align: center; color: #888; font-size: 1.2em; }
 
 /* Subtitle under the toggle pill indicating current view */
@@ -47,12 +47,12 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 
 /* Data dashboard cards */
 .data-dashboard { display: flex; gap: 2em; justify-content: center; margin: 2em 3em; }
-.data-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2.5em 3em; display: flex; flex-direction: column; align-items: center; gap: 1em; flex: 1; max-width: 320px; }
+.data-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2.5em 3em; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1em; flex: 1; max-width: 320px; min-height: 240px; }
 .data-card-circle-large { position: relative; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; }
 .progress-svg-large { width: 120px; height: 120px; transform: rotate(-90deg); position: absolute; }
-.data-card-circle-text { font-size: 2em; font-weight: 700; color: #fff; z-index: 1; }
+.data-card-circle-text { font-size: 1.5em; font-weight: 700; color: #fff; z-index: 1; }
 .data-card-number { font-size: 3.5em; font-weight: 700; color: #fff; }
-.data-card-label { font-size: 1em; color: #999; text-align: center; font-weight: 500; }
+.data-card-label { font-size: 1em; color: #999; text-align: center; font-weight: 500; margin-top: auto; }
 
 /* Videos table layout */
 .videos-table-container { margin: 2em 3em; background: rgba(20,20,20,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; }

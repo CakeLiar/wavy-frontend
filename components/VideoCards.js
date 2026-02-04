@@ -10,11 +10,8 @@ export default function VideoCards({ videos }) {
   };
 
   const getStatusBadges = (video) => {
-    const badges = [];
-    if (video?.analyzedAt) badges.push('Analyzed');
-    if (video?.transcribedAt) badges.push('Transcribed');
-    if (Array.isArray(video?.embedding) && video.embedding.length > 0) badges.push('Embedded');
-    return badges;
+    const isComplete = video?.analyzedAt && video?.transcribedAt && Array.isArray(video?.embedding) && video.embedding.length > 0;
+    return isComplete ? ['Analyzed'] : ['Analyzing'];
   };
 
   const isVideoComplete = (video) => {
