@@ -38,6 +38,13 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .minimal-btn { background: #111; color: #fff; border: 1px solid #222; border-radius: 6px; padding: 0.6em 1.4em; font-size: 1em; font-weight: 600; cursor: pointer; transition: background 0.2s; }
 .minimal-btn:hover { background: #222; }
 
+/* Dashboard choice buttons */
+.dashboard-choice-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 3em 4em; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 1em; min-width: 300px; }
+.dashboard-choice-btn:hover { background: rgba(255,255,255,0.06); border-color: rgba(11,108,255,0.4); transform: translateY(-4px); }
+.dashboard-choice-icon { font-size: 4em; }
+.dashboard-choice-title { font-size: 1.8em; font-weight: 600; color: #fff; }
+.dashboard-choice-desc { font-size: 1em; color: #999; text-align: center; }
+
 /* Videos table layout */
 .videos-table-container { margin: 2em 3em; background: rgba(20,20,20,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; }
 .videos-table { width: 100%; border-collapse: collapse; }
