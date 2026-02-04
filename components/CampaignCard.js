@@ -25,7 +25,7 @@ export default function CampaignCard({ campaign, onClick }) {
       <div className="campaign-card-img" style={{ backgroundImage: `url(${imgSrc})` }} />
       <div className="campaign-card-title">{campaign.name || campaign.id || 'Unnamed Campaign'}</div>
       <div className="campaign-card-badges">
-        <div className="campaign-metric-badge">{creatorsHighFit} creators with high fit</div>
+        <div className="campaign-metric-badge">{creatorsHighFit} creators selected</div>
         <div className="campaign-metric-badge">{formatViews(expectedViews)} expected views</div>
       </div>
     </div>

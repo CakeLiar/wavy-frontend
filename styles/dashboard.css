@@ -231,7 +231,7 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
   flex-direction: column;
   gap: 6px;
   margin-top: 10px;
-  padding: 0 12px 8px;
+  padding: 0 0 8px;
 }
 
 .campaign-metric-badge {

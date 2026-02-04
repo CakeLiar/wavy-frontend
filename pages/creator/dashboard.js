@@ -123,7 +123,7 @@ export default function CreatorDashboard() {
       </Head>
       <div className="header-row">
         <h1 className="title">
-          <img src="/template_images/logo_large.svg" alt="Wavy Logo" className="dashboard-logo" />
+          <img src="/logo_large.svg" alt="Wavy Logo" className="dashboard-logo" />
           Creator Dashboard
         </h1>
         <div style={{ display: 'flex', gap: '0.6em', alignItems: 'center' }}>

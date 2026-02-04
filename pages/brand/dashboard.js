@@ -161,10 +161,10 @@ export default function BrandDashboard() {
         </div>
       </div>
 
-      <div className="brand-data-cards">
+      <div className="brand-data-cards" style={{ marginTop: '2em' }}>
         <div className="brand-data-card">
           <div className="brand-data-number">{creatorsExpected}</div>
-          <div className="brand-data-label">Creators expected to do good on campaign</div>
+          <div className="brand-data-label">Fit creators</div>
         </div>
         <div className="brand-data-card">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
@@ -181,11 +181,11 @@ export default function BrandDashboard() {
           <div className="brand-data-label">Average cost per 1000 views</div>
         </div>
         <div className="brand-data-card">
-          <div className="brand-data-number">${campaignsProfiting}</div>
+          <div className="brand-data-number">{campaignsProfiting}</div>
           <div className="brand-data-label">Campaigns profiting</div>
         </div>
         <div className="brand-data-card">
-          <div className="brand-data-number">${unfitCampaigns}</div>
+          <div className="brand-data-number">{unfitCampaigns}</div>
           <div className="brand-data-label">Unfit campaigns</div>
         </div>
       </div>
