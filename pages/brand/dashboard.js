@@ -167,14 +167,14 @@ export default function BrandDashboard() {
           <div className="brand-data-label">Fit creators</div>
         </div>
         <div className="brand-data-card">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-            <div className="brand-data-number">{creatorsMatchHooks}</div>
+          <div className="brand-data-number">{creatorsMatchHooks}</div>
+          <div className="brand-data-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+            Creators match hooks
             <div className="info-icon-container">
               <span className="info-icon">ℹ</span>
               <div className="info-tooltip">Number of creators that naturally do well on your campaign's hooks</div>
             </div>
           </div>
-          <div className="brand-data-label">Creators match hooks</div>
         </div>
         <div className="brand-data-card">
           <div className="brand-data-number">${avgCostPer1000.toFixed(2)}</div>
