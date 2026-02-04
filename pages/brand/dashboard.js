@@ -169,9 +169,12 @@ export default function BrandDashboard() {
         <div className="brand-data-card">
           <div className="brand-data-number">{creatorsMatchHooks}</div>
           <div className="brand-data-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
-            Creators match hooks
-            <div className="info-icon-container">
-              <span className="info-icon">ℹ</span>
+            <span>Creators match hooks</span>
+            <div className="info-icon-wrapper">
+              <svg className="info-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M8 7v4M8 5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
               <div className="info-tooltip">Number of creators that naturally do well on your campaign's hooks</div>
             </div>
           </div>
