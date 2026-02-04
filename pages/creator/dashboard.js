@@ -100,6 +100,10 @@ export default function CreatorDashboard() {
   const totalVideos = Number(profileData?.totalVideos || (Array.isArray(videos) ? videos.length : 0) || 0);
   const percent = totalVideos > 0 ? Math.min(100, Math.ceil((100 * videosProcessed) / totalVideos)) : 0;
 
+  // Calculate confidence metrics
+  const confidence = profileData?.confidence || 68;
+  const videosNeededFor90 = profileData?.videosNeededFor90 || 26;
+
   const handleLogout = async () => {
     try {
       await logout(accessToken);
@@ -139,12 +143,20 @@ export default function CreatorDashboard() {
 
         <div className="data-card">
           <div className="data-card-number">{profileData?.matchedCampaigns || 0}</div>
-          <div className="data-card-label">campaigns you vibe with</div>
+          <div className="data-card-label">Campaigns you vibe with.</div>
         </div>
 
         <div className="data-card">
           <div className="data-card-number">{profileData?.applications || 0}</div>
           <div className="data-card-label">Applications</div>
+        </div>
+
+        <div className="data-card">
+          <div className="data-card-confidence">
+            <div className="confidence-percent">{confidence}%</div>
+            <div className="confidence-subtitle">Confidence</div>
+          </div>
+          <div className="data-card-label">Upload {videosNeededFor90} more videos to achieve 90%+ confidence.</div>
         </div>
       </div>
 
