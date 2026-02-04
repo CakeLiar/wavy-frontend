@@ -117,11 +117,10 @@ export default function CreatorDashboard() {
         </div>
       </div>
 
-      <div className="view-subtitle-row">
-        <div className="view-subtitle">My videos</div>
-        <div>
-          <div className="progress-wrap" title={`${percent}% videos processed`}>
-            <svg className="progress-svg" viewBox="0 0 36 36" aria-hidden>
+      <div className="data-dashboard">
+        <div className="data-card">
+          <div className="data-card-circle-large">
+            <svg className="progress-svg-large" viewBox="0 0 36 36" aria-hidden>
               <path className="progress-bg" d="M18 2.0845
                   a 15.9155 15.9155 0 0 1 0 31.831
                   a 15.9155 15.9155 0 0 1 0 -31.831" />
@@ -133,10 +132,24 @@ export default function CreatorDashboard() {
                   a 15.9155 15.9155 0 0 1 0 -31.831"
               />
             </svg>
-            <div className="progress-text">{percent}%</div>
-            <div className="progress-label">Analysis Progress</div>
+            <div className="data-card-circle-text">{percent}%</div>
           </div>
+          <div className="data-card-label">Analysis progress</div>
         </div>
+
+        <div className="data-card">
+          <div className="data-card-number">{profileData?.matchedCampaigns || 0}</div>
+          <div className="data-card-label">campaigns you vibe with</div>
+        </div>
+
+        <div className="data-card">
+          <div className="data-card-number">{profileData?.applications || 0}</div>
+          <div className="data-card-label">Applications</div>
+        </div>
+      </div>
+
+      <div className="view-subtitle-row">
+        <div className="view-subtitle">My videos</div>
       </div>
 
       {Array.isArray(videos) && videos.length === 0 ? (
