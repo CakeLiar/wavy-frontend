@@ -255,7 +255,23 @@ export default function Dashboard() {
   return (
     <div className="page">
       <div className="header-row">
-        <h1 className="title">Wavy Dashboard</h1>
+        <div style={{ display: 'flex', gap: '1.5em', alignItems: 'center' }}>
+          <h1 className="title">Wavy Dashboard</h1>
+          <div className="toggle-pill">
+            <button
+              className={`pill-option ${selectedView === 'videos' ? 'active' : ''}`}
+              onClick={() => setSelectedView('videos')}
+            >
+              Creator
+            </button>
+            <button
+              className={`pill-option ${selectedView === 'campaigns' ? 'active' : ''}`}
+              onClick={() => setSelectedView('campaigns')}
+            >
+              Brand
+            </button>
+          </div>
+        </div>
         <div style={{ display: 'flex', gap: '0.6em', alignItems: 'center' }}>
           {selectedView === 'campaigns' && (
             <button className="minimal-btn" onClick={() => setShowCreateModal(true)}>
@@ -263,23 +279,6 @@ export default function Dashboard() {
             </button>
           )}
           <button className="minimal-btn" onClick={handleLogout}>Logout</button>
-        </div>
-      </div>
-      
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.2em' }}>
-        <div className="toggle-pill">
-          <button
-            className={`pill-option ${selectedView === 'videos' ? 'active' : ''}`}
-            onClick={() => setSelectedView('videos')}
-          >
-            Creator
-          </button>
-          <button
-            className={`pill-option ${selectedView === 'campaigns' ? 'active' : ''}`}
-            onClick={() => setSelectedView('campaigns')}
-          >
-            Brand
-          </button>
         </div>
       </div>
 
