@@ -54,6 +54,11 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .data-card-circle-text { font-size: 0.7em; font-weight: 700; color: #fff; z-index: 1; }
 .data-card-number { font-size: 2.2em; font-weight: 700; color: #fff; flex-shrink: 0; line-height: 1; }
 .data-card-label { font-size: 0.95em; color: #999; text-align: left; font-weight: 500; }
+.data-card-label-clickable { font-size: 0.95em; color: #999; text-align: left; font-weight: 500; display: flex; align-items: center; gap: 0.5em; }
+.underlined-text { text-decoration: underline; }
+.arrow-icon { color: #999; flex-shrink: 0; transition: transform 0.2s, color 0.2s; }
+.data-card:hover .arrow-icon { transform: translateX(4px); color: #fff; }
+.data-card:hover .underlined-text { color: #fff; }
 .data-card-label-with-icon { font-size: 0.95em; color: #999; text-align: left; font-weight: 500; display: flex; align-items: center; gap: 0.5em; }
 .info-icon-wrapper { position: relative; display: inline-flex; align-items: center; cursor: help; }
 .info-icon { color: #666; transition: color 0.2s; }

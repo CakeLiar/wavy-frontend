@@ -151,9 +151,15 @@ export default function CreatorDashboard() {
           <div className="data-card-label">Analysis progress</div>
         </div>
 
-        <div className="data-card">
+        <div className="data-card" onClick={() => router.push('/creator/dashboard/campaigns')} style={{ cursor: 'pointer' }}>
           <div className="data-card-number">{profileData?.matchedCampaigns || 0}</div>
-          <div className="data-card-label">Campaigns you vibe with.</div>
+          <div className="data-card-label-clickable">
+            <span className="underlined-text">Campaigns you vibe with.</span>
+            <svg className="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
+              <path d="M10 8l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
         </div>
 
         <div className="data-card">
