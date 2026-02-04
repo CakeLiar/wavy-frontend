@@ -119,7 +119,6 @@ export default function CreatorCampaigns() {
                     <h3 className="creator-campaign-title">{campaign.name}</h3>
                     <div className="creator-campaign-vibe">
                       <span className="vibe-score">{campaign.vibeScore}%</span>
-                      <span className="vibe-label">vibe match</span>
                     </div>
                   </div>
                   <p className="creator-campaign-description">{campaign.description}</p>
