@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { getTokenFromUrl, getStoredToken, saveToken, logout } from '../utils/auth';
 
@@ -32,8 +33,15 @@ export default function Dashboard() {
 
   return (
     <div className="page">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <title>Wavy Dashboard</title>
+      </Head>
       <div className="header-row">
-        <h1 className="title">Wavy Dashboard</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <img src="/logo_large.svg" alt="Wavy" style={{ height: '32px', width: 'auto' }} />
+          <h1 className="title">Wavy Dashboard</h1>
+        </div>
         <div style={{ display: 'flex', gap: '0.6em', alignItems: 'center' }}>
           <button className="minimal-btn" onClick={handleLogout}>Logout</button>
         </div>

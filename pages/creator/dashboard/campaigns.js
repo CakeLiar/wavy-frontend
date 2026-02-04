@@ -37,7 +37,7 @@ export default function CreatorCampaigns() {
       name: 'Summer Wellness Challenge',
       description: 'Promote healthy living with engaging content',
       vibeScore: 95,
-      badges: ['Vibe fit', 'Likely to go viral']
+      badges: ['fits with natural content flow.', 'Vibe fit', 'Likely to go viral']
     },
     {
       id: 2,
@@ -79,6 +79,7 @@ export default function CreatorCampaigns() {
   const getBadgeClass = (badge) => {
     if (badge === 'Likely to go viral') return 'campaign-badge-viral';
     if (badge === 'Vibe fit') return 'campaign-badge-vibe';
+    if (badge === 'fits with natural content flow.') return 'campaign-badge-flow';
     if (badge === 'Audience favorite') return 'campaign-badge-audience';
     return 'campaign-badge';
   };
@@ -117,9 +118,6 @@ export default function CreatorCampaigns() {
                 <div className="creator-campaign-info">
                   <div className="creator-campaign-header">
                     <h3 className="creator-campaign-title">{campaign.name}</h3>
-                    <div className="creator-campaign-vibe">
-                      <span className="vibe-score">{campaign.vibeScore}%</span>
-                    </div>
                   </div>
                   <p className="creator-campaign-description">{campaign.description}</p>
                   {campaign.badges.length > 0 && (

@@ -11,10 +11,23 @@ export default function CampaignCard({ campaign, onClick }) {
   }
   const imgSrc = `/template_images/template_${idx}.jpeg`;
 
+  // Mock data for badges - in real app would come from campaign object
+  const creatorsHighFit = Math.floor(Math.random() * 30) + 10;
+  const expectedViews = (Math.floor(Math.random() * 500) + 100) * 1000;
+  const formatViews = (views) => {
+    if (views >= 1000000) return (views / 1000000).toFixed(1) + 'M';
+    if (views >= 1000) return (views / 1000).toFixed(0) + 'K';
+    return views.toString();
+  };
+
   return (
     <div className="campaign-card" onClick={onClick} role={onClick ? 'button' : undefined} tabIndex={onClick ? 0 : undefined} onKeyDown={(e) => { if (onClick && (e.key === 'Enter' || e.key === ' ')) onClick(); }}>
       <div className="campaign-card-img" style={{ backgroundImage: `url(${imgSrc})` }} />
       <div className="campaign-card-title">{campaign.name || campaign.id || 'Unnamed Campaign'}</div>
+      <div className="campaign-card-badges">
+        <div className="campaign-metric-badge">{creatorsHighFit} creators with high fit</div>
+        <div className="campaign-metric-badge">{formatViews(expectedViews)} expected views</div>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { API_BASE } from '../../apiBase';
 import { useRouter } from 'next/router';
 import Campaigns from '../../components/Campaigns';
@@ -11,6 +12,12 @@ export default function BrandDashboard() {
   const [campaigns, setCampaigns] = useState([]);
   const [campaignsLoading, setCampaignsLoading] = useState(true);
   const [campaignsError, setCampaignsError] = useState(null);
+  // Mock data for brand summary
+  const [creatorsExpected] = useState(47);
+  const [creatorsMatchHooks] = useState(32);
+  const [avgCostPer1000] = useState(12.5);
+  const [campaignsProfiting] = useState(3);
+  const [unfitCampaigns] = useState(1);
   const router = useRouter();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newCampaignName, setNewCampaignName] = useState('');
@@ -137,13 +144,49 @@ export default function BrandDashboard() {
 
   return (
     <div className="page">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <title>Brand Dashboard - Wavy</title>
+      </Head>
       <div className="header-row">
-        <h1 className="title">Brand Dashboard</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <img src="/logo_large.svg" alt="Wavy" style={{ height: '32px', width: 'auto' }} />
+          <h1 className="title" style={{ fontSize: '1.2rem', fontFamily: 'system-ui, -apple-system, sans-serif' }}>Brand Dashboard</h1>
+        </div>
         <div style={{ display: 'flex', gap: '0.6em', alignItems: 'center' }}>
           <button className="minimal-btn" onClick={() => setShowCreateModal(true)}>
             Create Campaign
           </button>
           <button className="minimal-btn" onClick={handleLogout}>Logout</button>
+        </div>
+      </div>
+
+      <div className="brand-data-cards">
+        <div className="brand-data-card">
+          <div className="brand-data-number">{creatorsExpected}</div>
+          <div className="brand-data-label">Creators expected to do good on campaign</div>
+        </div>
+        <div className="brand-data-card">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            <div className="brand-data-number">{creatorsMatchHooks}</div>
+            <div className="info-icon-container">
+              <span className="info-icon">ℹ</span>
+              <div className="info-tooltip">Number of creators that naturally do well on your campaign's hooks</div>
+            </div>
+          </div>
+          <div className="brand-data-label">Creators match hooks</div>
+        </div>
+        <div className="brand-data-card">
+          <div className="brand-data-number">${avgCostPer1000.toFixed(2)}</div>
+          <div className="brand-data-label">Average cost per 1000 views</div>
+        </div>
+        <div className="brand-data-card">
+          <div className="brand-data-number">${campaignsProfiting}</div>
+          <div className="brand-data-label">Campaigns profiting</div>
+        </div>
+        <div className="brand-data-card">
+          <div className="brand-data-number">${unfitCampaigns}</div>
+          <div className="brand-data-label">Unfit campaigns</div>
         </div>
       </div>
 

@@ -163,14 +163,15 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .creator-campaign-info { flex: 1; }
 .creator-campaign-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5em; }
 .creator-campaign-title { font-size: 1.2em; font-weight: 600; color: #fff; margin: 0; }
-.creator-campaign-vibe { display: flex; flex-direction: column; align-items: flex-end; }
-.vibe-score { font-size: 1.5em; font-weight: 700; color: #0b6cff; line-height: 1; }
-.vibe-label { font-size: 0.75em; color: #999; margin-top: 0.2em; }
+.creator-campaign-vibe { display: none; }
+.vibe-score { display: none; }
+.vibe-label { display: none; }
 .creator-campaign-description { color: #bbb; font-size: 0.95em; margin: 0 0 1em 0; line-height: 1.4; }
 .campaign-badges-container { display: flex; gap: 0.5em; flex-wrap: wrap; }
 .campaign-badge-viral { background: rgba(255,100,100,0.15); color: #ff6464; border: 1px solid rgba(255,100,100,0.3); padding: 0.3em 0.7em; border-radius: 6px; font-size: 0.8em; font-weight: 600; }
 .campaign-badge-vibe { background: rgba(11,108,255,0.15); color: #5b9cff; border: 1px solid rgba(11,108,255,0.3); padding: 0.3em 0.7em; border-radius: 6px; font-size: 0.8em; font-weight: 600; }
 .campaign-badge-audience { background: rgba(100,255,150,0.15); color: #64ff96; border: 1px solid rgba(100,255,150,0.3); padding: 0.3em 0.7em; border-radius: 6px; font-size: 0.8em; font-weight: 600; }
+.campaign-badge-flow { background: rgba(180,120,255,0.12); color: #c59bff; border: 1px solid rgba(180,120,255,0.25); padding: 0.3em 0.7em; border-radius: 6px; font-size: 0.8em; font-weight: 600; }
 .campaign-apply-btn { background: #0b6cff; color: #fff; border: none; padding: 0.5em 1.2em; border-radius: 6px; font-weight: 400; cursor: pointer; transition: background 0.2s; font-size: 0.9em; }
 .campaign-apply-btn:hover { background: #0047b3; }
 
@@ -180,3 +181,66 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .title { font-weight: 400; font-size: 1.2em; letter-spacing: 0.02em; margin: 0; }
 .section-title { font-weight: 600; font-size: 1.5em; margin: 2em 0 0.5em 0; text-align: center; letter-spacing: 0.02em; }
 .center-muted { text-align: center; color: #888; font-size: 1.2em; }
+
+/* Brand Dashboard Data Cards */
+.brand-data-cards {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  padding: 0 3em;
+}
+
+.brand-data-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px 24px;
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.brand-data-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.brand-data-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.brand-data-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Campaign Card Badges */
+.campaign-card-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 0 12px 8px;
+}
+
+.campaign-metric-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  font-weight: 500;
+}
