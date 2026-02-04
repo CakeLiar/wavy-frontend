@@ -64,9 +64,6 @@ export default function VideoCards({ videos }) {
                 <td className="video-date-cell">{formatDate(video?.analyzedAt)}</td>
                 <td className="video-date-cell">{formatDate(video?.transcribedAt)}</td>
                 <td className="video-progress-cell">
-                  {index === 0 && (
-                    <div className="progress-text-display">{progressPercent}%</div>
-                  )}
                   <div className="video-status-indicator">
                     {isVideoComplete(video) ? (
                       <div className="status-complete" title="Complete">

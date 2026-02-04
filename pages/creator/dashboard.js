@@ -97,10 +97,10 @@ export default function CreatorDashboard() {
     return <div>Loading...</div>;
   }
 
-  // derive progress from profileData
-  const videosProcessed = Number(profileData?.videosProcessed || 0);
-  const totalVideos = Number(profileData?.totalVideos || (Array.isArray(videos) ? videos.length : 0) || 0);
-  const percent = totalVideos > 0 ? Math.min(100, Math.ceil((100 * videosProcessed) / totalVideos)) : 0;
+  // Calculate progress from local videos data
+  const analyzedVideos = Array.isArray(videos) ? videos.filter(v => v?.analyzedAt && v?.transcribedAt && v?.embedding).length : 0;
+  const totalVideos = Array.isArray(videos) ? videos.length : 0;
+  const percent = totalVideos > 0 ? Math.round((analyzedVideos / totalVideos) * 100) : 0;
 
   // Calculate confidence metrics
   const confidence = profileData?.confidence || 68;
