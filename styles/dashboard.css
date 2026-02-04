@@ -10,7 +10,7 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 
 /* Header */
 .header-row { display: flex; justify-content: space-between; align-items: center; padding: 2em 3em 0 3em; }
-.title { font-weight: 600; font-size: 1em; letter-spacing: 0.02em; margin: 0; display: flex; align-items: center; gap: 0.5em; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; }
+.title { font-weight: 400; font-size: 0.9em; letter-spacing: 0.02em; margin: 0; display: flex; align-items: center; gap: 0.5em; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; }
 .dashboard-logo { height: 1.2em; width: auto; }
 
 /* Container */
@@ -153,6 +153,26 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 /* Hover: only show background behind entire card (no lift) */
 .campaign-card:hover { background: rgba(255,255,255,0.08); cursor: pointer; }
 .campaign-details { display: none; }
+
+/* Creator Campaigns List */
+.creator-campaigns-list { display: flex; flex-direction: column; gap: 1.5em; margin: 2em 3em; }
+.creator-campaign-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5em; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s, border-color 0.2s; }
+.creator-campaign-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12); }
+.creator-campaign-left { display: flex; gap: 1.5em; align-items: center; flex: 1; }
+.creator-campaign-img { width: 120px; height: 120px; background-size: cover; background-position: center; border-radius: 8px; flex-shrink: 0; }
+.creator-campaign-info { flex: 1; }
+.creator-campaign-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5em; }
+.creator-campaign-title { font-size: 1.2em; font-weight: 600; color: #fff; margin: 0; }
+.creator-campaign-vibe { display: flex; flex-direction: column; align-items: flex-end; }
+.vibe-score { font-size: 1.5em; font-weight: 700; color: #0b6cff; line-height: 1; }
+.vibe-label { font-size: 0.75em; color: #999; margin-top: 0.2em; }
+.creator-campaign-description { color: #bbb; font-size: 0.95em; margin: 0 0 1em 0; line-height: 1.4; }
+.campaign-badges-container { display: flex; gap: 0.5em; flex-wrap: wrap; }
+.campaign-badge-viral { background: rgba(255,100,100,0.15); color: #ff6464; border: 1px solid rgba(255,100,100,0.3); padding: 0.3em 0.7em; border-radius: 6px; font-size: 0.8em; font-weight: 600; }
+.campaign-badge-vibe { background: rgba(11,108,255,0.15); color: #5b9cff; border: 1px solid rgba(11,108,255,0.3); padding: 0.3em 0.7em; border-radius: 6px; font-size: 0.8em; font-weight: 600; }
+.campaign-badge-audience { background: rgba(100,255,150,0.15); color: #64ff96; border: 1px solid rgba(100,255,150,0.3); padding: 0.3em 0.7em; border-radius: 6px; font-size: 0.8em; font-weight: 600; }
+.campaign-apply-btn { background: #0b6cff; color: #fff; border: none; padding: 0.8em 2em; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; font-size: 1em; }
+.campaign-apply-btn:hover { background: #0047b3; }
 
 /* Layout helpers */
 .header-row { display: flex; justify-content: space-between; align-items: center; padding: 2em 3em 0 3em; }
