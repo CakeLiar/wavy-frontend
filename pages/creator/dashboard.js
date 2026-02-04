@@ -38,6 +38,8 @@ export default function CreatorDashboard() {
           router.push('/login');
         } else if (response.ok) {
           const data = await response.json();
+          console.log('Videos data fetched:', data);
+          console.log('Videos array:', data.videos);
           setProfileData(data);
           setVideos(data.videos || []);
         } else {

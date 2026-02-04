@@ -47,10 +47,10 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 
 /* Data dashboard cards */
 .data-dashboard { display: flex; gap: 1.5em; justify-content: center; margin: 2em 3em; flex-wrap: wrap; }
-.data-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.8em 2.2em; display: flex; flex-direction: row; align-items: center; gap: 1.2em; flex: 1; max-width: 320px; min-width: 240px; min-height: 100px; }
-.data-card-circle-large { position: relative; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.progress-svg-large { width: 70px; height: 70px; transform: rotate(-90deg); position: absolute; }
-.data-card-circle-text { font-size: 1.1em; font-weight: 700; color: #fff; z-index: 1; }
+.data-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.2em 1.8em; display: flex; flex-direction: row; align-items: center; gap: 1.2em; flex: 1; max-width: 320px; min-width: 240px; min-height: 70px; }
+.data-card-circle-large { position: relative; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.progress-svg-large { width: 60px; height: 60px; transform: rotate(-90deg); position: absolute; }
+.data-card-circle-text { font-size: 1em; font-weight: 700; color: #fff; z-index: 1; }
 .data-card-number { font-size: 2.2em; font-weight: 700; color: #fff; flex-shrink: 0; line-height: 1; }
 .data-card-label { font-size: 0.95em; color: #999; text-align: left; font-weight: 500; }
 .data-card-label-with-icon { font-size: 0.95em; color: #999; text-align: left; font-weight: 500; display: flex; align-items: center; gap: 0.5em; }
@@ -60,7 +60,7 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .info-tooltip { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: rgba(20,20,20,0.98); color: #fff; padding: 0.7em 1em; border-radius: 8px; font-size: 0.85em; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 10; }
 .info-icon-wrapper:hover .info-tooltip { opacity: 1; }
 .data-card-confidence { display: flex; flex-direction: column; align-items: center; margin: auto 0; }
-.confidence-percent { font-size: 2.5em; font-weight: 700; color: #fff; line-height: 1; }
+.confidence-percent { font-size: 1.8em; font-weight: 700; color: #fff; line-height: 1; }
 .confidence-subtitle { font-size: 0.9em; color: #ddd; margin-top: 0.3em; font-weight: 500; }
 
 /* Videos table layout */
