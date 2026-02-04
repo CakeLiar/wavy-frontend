@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { API_BASE } from '../../apiBase';
 import { useRouter } from 'next/router';
 import VideoCards from '../../components/VideoCards';
@@ -116,8 +117,15 @@ export default function CreatorDashboard() {
 
   return (
     <div className="page">
+      <Head>
+        <title>Creator Dashboard - Wavy</title>
+        <link rel="icon" href="/template_images/favicon.ico" />
+      </Head>
       <div className="header-row">
-        <h1 className="title">Creator Dashboard</h1>
+        <h1 className="title">
+          <img src="/template_images/logo_large.svg" alt="Wavy Logo" className="dashboard-logo" />
+          Creator Dashboard
+        </h1>
         <div style={{ display: 'flex', gap: '0.6em', alignItems: 'center' }}>
           <button className="minimal-btn" onClick={handleLogout}>Logout</button>
         </div>

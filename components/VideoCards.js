@@ -18,10 +18,6 @@ export default function VideoCards({ videos }) {
     return video?.analyzedAt && video?.transcribedAt && video?.embedding;
   };
 
-  // Calculate overall progress based on analyzed videos
-  const analyzedCount = videos.filter(v => v?.analyzedAt && v?.transcribedAt && v?.embedding).length;
-  const totalCount = videos.length;
-  const progressPercent = totalCount > 0 ? Math.round((analyzedCount / totalCount) * 100) : 0;
 
   return (
     <div className="videos-table-container">
