@@ -152,7 +152,7 @@ export default function CreatorDashboard() {
         </div>
 
         <div className="data-card" onClick={() => router.push('/creator/dashboard/campaigns')} style={{ cursor: 'pointer' }}>
-          <div className="data-card-number">{profileData?.matchedCampaigns || 0}</div>
+          <div className="data-card-number">{profileData?.matchedCampaigns || 6}</div>
           <div className="data-card-label-clickable">
             <span className="underlined-text">Campaigns you vibe with.</span>
             <svg className="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
