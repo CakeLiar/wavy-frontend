@@ -11,7 +11,7 @@ export default function CreatorDashboard() {
   const [accessToken, setAccessToken] = useState(null);
   const [profileData, setProfileData] = useState(null);
   const router = useRouter();
-  const [pollIntervalMs] = useState(15000);
+  const [pollIntervalMs] = useState(1000);
 
   useEffect(() => {
     // Print query parameters to the console
