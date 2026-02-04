@@ -10,12 +10,12 @@ export default function VideoCards({ videos }) {
   };
 
   const getStatusBadges = (video) => {
-    const isComplete = video?.analyzedAt && video?.transcribedAt && Array.isArray(video?.embedding) && video.embedding.length > 0;
+    const isComplete = video?.analyzedAt && video?.transcribedAt && Array.isArray(video?.embedding);
     return isComplete ? ['Analyzed'] : ['Analyzing'];
   };
 
   const isVideoComplete = (video) => {
-    return video?.analyzedAt && video?.transcribedAt && Array.isArray(video?.embedding) && video.embedding.length > 0;
+    return video?.analyzedAt && video?.transcribedAt && Array.isArray(video?.embedding);
   };
 
   return (
