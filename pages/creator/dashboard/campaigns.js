@@ -92,7 +92,7 @@ export default function CreatorCampaigns() {
       </Head>
       <div className="header-row">
         <h1 className="title">
-          <img src="/template_images/logo_large.svg" alt="Wavy Logo" className="dashboard-logo" />
+          <img src="/logo_large.svg" alt="Wavy Logo" className="dashboard-logo" />
           <span style={{ cursor: 'pointer' }} onClick={() => router.push('/creator/dashboard')}>Creator Dashboard</span>
           <span style={{ color: '#666', margin: '0 0.3em' }}>/</span>
           <span>Campaigns</span>
