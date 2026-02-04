@@ -152,11 +152,17 @@ export default function CreatorDashboard() {
         </div>
 
         <div className="data-card">
-          <div className="data-card-confidence">
-            <div className="confidence-percent">{confidence}%</div>
-            <div className="confidence-subtitle">Confidence</div>
+          <div className="data-card-number">{confidence}%</div>
+          <div className="data-card-label-with-icon">
+            <span>Confidence</span>
+            <div className="info-icon-wrapper">
+              <svg className="info-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M8 7v4M8 5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+              <div className="info-tooltip">Upload {videosNeededFor90} more videos to achieve at least 90% confidence.</div>
+            </div>
           </div>
-          <div className="data-card-label">Upload {videosNeededFor90} more videos to achieve 90%+ confidence.</div>
         </div>
       </div>
 
@@ -165,7 +171,7 @@ export default function CreatorDashboard() {
       </div>
 
       {Array.isArray(videos) && videos.length === 0 ? (
-        <p style={{ textAlign: 'center', color: '#888', fontSize: '1.2em' }}>No videos found.</p>
+        <p style={{ textAlign: 'center', color: '#888', fontSize: '0.8em' }}>No videos found.</p>
       ) : (
         <VideoCards videos={videos} />
       )}
