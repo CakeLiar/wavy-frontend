@@ -1,0 +1,12 @@
+{
+  "restoreTerminals.terminals": [
+    {
+      "splitTerminals": [
+        {
+          "name": "frontend",
+          "commands": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "splitTerminals": [
+      {
+        "name": "frontend",
+        "commands": []
+      }
+    ]
+  }
+]

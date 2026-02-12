@@ -1,9 +1,5 @@
 // Centralized API base URL for the frontend
-// Use remote API by default, fallback to local if needed
-export const API_BASE = typeof window !== 'undefined' && window.location.hostname === 'localhost'
-	? 'https://abdullah-camailed-superacutely.ngrok-free.dev' //'http://127.0.0.1:3000'
-	: 'https://abdullah-camailed-superacutely.ngrok-free.dev';
-
-
-
-	
+// Use local API if LOCAL_DEPLOYMNT is true, otherwise use remote
+export const API_BASE = process.env.NEXT_PUBLIC_LOCAL_DEPLOYMNT === 'true'
+	? 'http://127.0.0.1:3000'
+	: 'https://wavy.dev.wavelink.com';
