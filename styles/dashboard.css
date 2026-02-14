@@ -74,13 +74,6 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .videos-table { width: 100%; border-collapse: collapse; }
 .videos-table thead { background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.08); }
 .videos-table thead th { text-align: left; padding: 1em 1.2em; font-size: 0.85em; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
-.video-progress-cell { text-align: right; width: 80px; padding-right: 1.5em !important; }
-.progress-header { text-align: right !important; }
-.video-status-indicator { display: inline-flex; justify-content: flex-end; }
-.status-complete { color: #fff; display: inline-flex; }
-.status-loading { color: #666; display: inline-flex; }
-.spinner { animation: spin 1s linear infinite; }
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .videos-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.15s ease; }
 .videos-table tbody tr:hover { background: rgba(255,255,255,0.02); }
 .videos-table tbody tr:last-child { border-bottom: none; }
@@ -89,9 +82,11 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
 .video-thumbnail { width: 58px; height: 58px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); }
 .video-thumbnail-placeholder { width: 58px; height: 58px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
 .video-title-cell { font-weight: 500; color: #fff; max-width: 400px; }
-.video-date-cell { color: #999; font-size: 0.9em; }
-.status-badges { display: flex; gap: 0.4em; flex-wrap: wrap; }
+.status-cell { display: flex; align-items: center; gap: 0.6em; }
 .status-badge { background: rgba(11,108,255,0.15); color: #5b9cff; border: 1px solid rgba(11,108,255,0.25); border-radius: 6px; padding: 0.25em 0.6em; font-size: 0.8em; font-weight: 600; }
+.status-badge-analyzing { background: rgba(255,255,255,0.08); color: #999; border: 1px solid rgba(255,255,255,0.12); }
+.status-tick { color: #5b9cff; flex-shrink: 0; }
+.videos-more-text { padding: 1em 1.2em; text-align: center; color: #888; font-size: 0.9em; border-top: 1px solid rgba(255,255,255,0.06); }
 
 /* Progress circle */
 .progress-wrap { display: flex; align-items: center; gap: 0.6em; margin-left: 1em; }
@@ -243,4 +238,228 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
   color: rgba(255, 255, 255, 0.7);
   text-align: center;
   font-weight: 500;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* Header */
+  .header-row {
+    padding: 1.5em 1em 0 1em;
+    flex-direction: row;
+    gap: 0.5em;
+  }
+  
+  .title {
+    font-size: 0.75em;
+    flex-wrap: wrap;
+  }
+  
+  .dashboard-logo {
+    height: 1em;
+  }
+  
+  .minimal-btn {
+    padding: 0.5em 1em;
+    font-size: 0.85em;
+  }
+  
+  /* Data Dashboard Cards */
+  .data-dashboard {
+    flex-direction: column;
+    margin: 1.5em 1em;
+    gap: 1em;
+  }
+  
+  .data-card {
+    max-width: 100%;
+    min-width: 100%;
+    padding: 1em 1.2em;
+  }
+  
+  .data-card-number {
+    font-size: 1.8em;
+  }
+  
+  .data-card-label,
+  .data-card-label-clickable {
+    font-size: 0.85em;
+  }
+  
+  /* View Subtitle */
+  .view-subtitle-row {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  
+  .view-subtitle {
+    font-size: 1em;
+  }
+  
+  /* Videos Table - Make it full width and card-like */
+  .videos-table-container {
+    margin: 1.5em 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .videos-table thead {
+    display: none;
+  }
+  
+  .videos-table,
+  .videos-table tbody,
+  .videos-table tr {
+    display: block;
+    width: 100%;
+  }
+  
+  .videos-table tbody tr {
+    margin-bottom: 1em;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 1em;
+    background: rgba(20,20,20,0.4);
+  }
+  
+  .videos-table tbody tr:last-child {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  
+  .videos-table tbody td {
+    display: block;
+    padding: 0.5em 0;
+    border: none;
+  }
+  
+  .video-thumbnail-cell {
+    width: 100%;
+    margin-bottom: 0.5em;
+  }
+  
+  .video-thumbnail,
+  .video-thumbnail-placeholder {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    max-width: 100%;
+  }
+  
+  .video-title-cell {
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    max-width: 100%;
+  }
+  
+  .status-cell {
+    justify-content: flex-start;
+  }
+  
+  .videos-more-text {
+    padding: 1em;
+  }
+  
+  /* Brand Data Cards */
+  .brand-data-cards {
+    padding: 0 1em;
+    flex-direction: column;
+  }
+  
+  .brand-data-card {
+    min-width: 100%;
+  }
+  
+  /* Campaigns List */
+  .campaigns-list {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  
+  .campaign-card {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Creator Campaigns */
+  .creator-campaigns-list {
+    margin: 1.5em 1em;
+  }
+  
+  .creator-campaign-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .creator-campaign-left {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .creator-campaign-img {
+    width: 100%;
+    height: 160px;
+  }
+  
+  .campaign-apply-btn {
+    width: 100%;
+    margin-top: 1em;
+  }
+  
+  /* Container */
+  .container {
+    padding: 1em 1em;
+    margin: 1em 0;
+  }
+  
+  /* Dashboard Choice Buttons */
+  .dashboard-choice-btn {
+    min-width: 100%;
+    padding: 2em 2em;
+  }
+  
+  .dashboard-choice-icon {
+    font-size: 3em;
+  }
+  
+  .dashboard-choice-title {
+    font-size: 1.5em;
+  }
+  
+  /* Modal */
+  .modal {
+    width: 90%;
+    max-width: 90%;
+    margin: 1em;
+  }
+  
+  .modal.modal-wide {
+    width: 95vw;
+    max-width: 95vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 0.65em;
+  }
+  
+  .minimal-btn {
+    padding: 0.4em 0.8em;
+    font-size: 0.8em;
+  }
+  
+  .data-card {
+    padding: 0.8em 1em;
+  }
+  
+  .data-card-number {
+    font-size: 1.5em;
+  }
+  
+  .data-card-label,
+  .data-card-label-clickable {
+    font-size: 0.8em;
+  }
 }
