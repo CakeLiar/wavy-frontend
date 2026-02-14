@@ -98,15 +98,6 @@ export default function CreatorDashboard() {
     return <div>Loading...</div>;
   }
 
-  // Calculate progress from local videos data
-  const analyzedVideos = Array.isArray(videos) ? videos.filter(v => v?.analyzedAt && v?.transcribedAt && v?.embedding).length : 0;
-  const totalVideos = Array.isArray(videos) ? videos.length : 0;
-  const percent = totalVideos > 0 ? Math.round((analyzedVideos / totalVideos) * 100) : 0;
-
-  // Calculate confidence metrics
-  const confidence = profileData?.confidence || 68;
-  const videosNeededFor90 = profileData?.videosNeededFor90 || 26;
-
   const handleLogout = async () => {
     try {
       await logout(accessToken);
@@ -132,26 +123,7 @@ export default function CreatorDashboard() {
       </div>
 
       <div className="data-dashboard">
-        <div className="data-card">
-          <div className="data-card-circle-large">
-            <svg className="progress-svg-large" viewBox="0 0 36 36" aria-hidden>
-              <path className="progress-bg" d="M18 2.0845
-                  a 15.9155 15.9155 0 0 1 0 31.831
-                  a 15.9155 15.9155 0 0 1 0 -31.831" />
-              <path
-                className="progress-bar"
-                strokeDasharray={`${percent}, 100`}
-                d="M18 2.0845
-                  a 15.9155 15.9155 0 0 1 0 31.831
-                  a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-            </svg>
-            <div className="data-card-circle-text">{percent}%</div>
-          </div>
-          <div className="data-card-label">Analysis progress</div>
-        </div>
-
-        <div className="data-card" onClick={() => router.push('/creator/dashboard/campaigns')} style={{ cursor: 'pointer' }}>
+        <div className="data-card" onClick={() => alert('Coming soon')} style={{ cursor: 'pointer' }}>
           <div className="data-card-number">{profileData?.matchedCampaigns || 6}</div>
           <div className="data-card-label-clickable">
             <span className="underlined-text">Campaigns you vibe with.</span>
@@ -167,17 +139,14 @@ export default function CreatorDashboard() {
           <div className="data-card-label">Applications</div>
         </div>
 
-        <div className="data-card">
-          <div className="data-card-number">{confidence}%</div>
-          <div className="data-card-label-with-icon">
-            <span>Confidence</span>
-            <div className="info-icon-wrapper">
-              <svg className="info-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
-                <path d="M8 7v4M8 5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-              <div className="info-tooltip">Upload {videosNeededFor90} more videos to achieve at least 90% confidence.</div>
-            </div>
+        <div className="data-card" onClick={() => alert('Coming soon')} style={{ cursor: 'pointer' }}>
+          <div className="data-card-number">-</div>
+          <div className="data-card-label-clickable">
+            <span className="underlined-text">My performance</span>
+            <svg className="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
+              <path d="M10 8l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
         </div>
       </div>

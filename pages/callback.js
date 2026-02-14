@@ -9,7 +9,7 @@ export default function Callback() {
   useEffect(() => {
     const url = new URL(window.location.href);
     const accessToken = url.searchParams.get('access_token');
-    const redirectUri = url.searchParams.get('redirect_uri') || '/dashboard';
+    const redirectUri = url.searchParams.get('redirect_uri') || '/creator/dashboard';
 
     if (accessToken) {
       // Store access token in sessionStorage for dashboard
