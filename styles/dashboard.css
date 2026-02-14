@@ -292,7 +292,7 @@ body { font-family: Inter, Arial, sans-serif; -webkit-font-smoothing: antialiase
   }
   
   .view-subtitle {
-    font-size: 1em;
+    font-size: 2em;
   }
   
   /* Videos Table - Make it full width and card-like */
