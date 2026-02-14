@@ -4,19 +4,6 @@ This document provides an overview of the available API endpoints for interactin
 
 ---
 
-## Base URL
-The base URL for all API requests is:
-```
-https://abdullah-camailed-superacutely.ngrok-free.dev
-```
-
-Fallback is
-```
-http://127.0.0.1:5000
-```
-
----
-
 ## Authentication Endpoints
 
 ### 1. Login with TikTok
